@@ -3,7 +3,7 @@
 
 ### Features:
 - Radians and degrees support
-- Sine, cosine, tangent functions
+- Sine, cosine, tangent, and invert functions
 - Square root, exponent, and absolute value
 - PI and Euler's number constants
 
