@@ -200,8 +200,7 @@ public class Evaluator {
         }
 
         // stop using string and use opType of token
-        if (function.opType == OpType.SIN || function.opType == OpType.COS || function.opType == OpType.TAN ||
-                function.opType == OpType.ASIN || function.opType == OpType.ACOS || function.opType == OpType.ATAN) {
+        if (function.opType == OpType.SIN || function.opType == OpType.COS || function.opType == OpType.TAN) {
             if (angleMode == angleModes.DEGREES) {
                 argument.doubleVal = Math.toRadians(argument.doubleVal);
             }
@@ -241,6 +240,18 @@ public class Evaluator {
             default:
                 throw new IllegalArgumentException("Unsupported function: " + function);
         }
+
+        // Check if the result should be in degrees or radians for inverse trigonometric functions
+        if (function.opType == OpType.ASIN || function.opType == OpType.ACOS || function.opType == OpType.ATAN) {
+            System.out.println("angleMode: " + angleMode);
+            if (angleMode == angleModes.DEGREES) {
+                result.doubleVal = Math.toDegrees(result.doubleVal);
+                result.tokenStr = String.valueOf(result.doubleVal);
+            }
+
+            System.out.println("result: " + result.doubleVal);
+        }
+
 
         return result;
     }
